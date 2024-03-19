@@ -6,11 +6,21 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <p>
-      {{ title }}
     </p>
+    
+    <input #inputElementRef (keyup.enter)="changeTitle(getInputValue($event))">
+  <button (click)="changeTitle(inputElementRef.value)">
+  Save
+</button>
   `,
   styleUrl: './input-button-unit.component.scss'
 })
 export class InputButtonUnitComponent {
-  title =  'Learn about components!';
+  title = 'Hello World';
+  changeTitle(newTitle: string) {
+    this.title = newTitle;
+  }
+  getInputValue(event: Event) {
+    return (event.target as HTMLInputElement).value;
+  }
 }
